@@ -48,17 +48,17 @@ class LambdaExpression2Test {
 		var executable = Stream.generate(() -> null)
 						.takeWhile(x -> urlIterator.hasNext())
 						.map(n -> urlIterator.next())
-						.filter(n -> n.getPath().contains("main"))
-						.map(url -> new File(url.getPath()))
-						.flatMap(this::walkThrough)
-						.filter(path -> path.endsWith("Executable.class"))
-						.findAny();
+				.filter(n -> n.getPath().contains("main"))
+				.map(url -> new File(url.getPath()))
+				.flatMap(this::walkThrough)
+				.filter(path -> path.endsWith("Executable.class"))
+				.findAny();
 
 		assertTrue(executable.isPresent(), "Functional Interface Executable don't exist in classpath");
 
 		var spy = Mockito.spy(new LambdaExpression2());
 		spy.run();
-		Mockito.verify(spy, Mockito.times(1)).executionTime();
+		Mockito.verify(spy, Mockito.times(1)).run();
 	}
 
 	private Stream<? extends Path> walkThrough(File file) {

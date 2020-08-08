@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FileProcessorTest {
 	private FileProcessor fileProcessor;
@@ -45,7 +45,7 @@ class FileProcessorTest {
 	}
 
 	@Test
-	void testReadFileFrom() {
+	void testReadFileFrom() throws IOException {
 		System.out.println(readFrom.getPath());
 		var lines = fileProcessor.readFileFrom(readFrom.getPath());
 
@@ -53,7 +53,7 @@ class FileProcessorTest {
 	}
 
 	@Test
-	void testWriteToFile() {
+	void testWriteToFile() throws IOException {
 		var lines = fileProcessor.readFileFrom(readFrom.getPath());
 		fileProcessor.writeToFile(lines, writeTo.getPath());
 		var writtenLine = fileProcessor.readFileFrom(writeTo.getPath());

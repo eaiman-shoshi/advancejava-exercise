@@ -29,19 +29,25 @@ package com.masterdevskills.cha1.ext1;
 public class LambdaExpression2 {
 
 	/**
-	 * TODO Create a functional interface called Executable
-	 * Add a method called execute()
-	 * it doesn't take anything and returns void
-	 * use this functional interface as argument of the following method and log
-	 * the time it takes to execute the method
-	 */
-	public void executionTime() {
-		//TODO add your code here;
-	}
+     * TODO Create a functional interface called Executable
+     * Add a method called execute()
+     * it doesn't take anything and returns void
+     * use this functional interface as argument of the following method and log
+     * the time it takes to execute the method
+     */
+    public void executionTime(Executable executable) {
+        executable.execute();
+    }
 
-	/* TODO: use the above of method here
-	 */
-	public void run() {
-		//executionTime();
-	}
+    /* TODO: use the above of method here
+     */
+    public void run() {
+        Executable executable = () -> System.out.println(System.currentTimeMillis());
+        executionTime(executable);
+    }
+
+    @FunctionalInterface
+    interface Executable {
+        void execute();
+    }
 }
