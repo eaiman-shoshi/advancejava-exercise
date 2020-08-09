@@ -36,18 +36,18 @@ public class LambdaExpression2 {
      * the time it takes to execute the method
      */
     public void executionTime(Executable executable) {
+        long l = System.nanoTime();
         executable.execute();
+        System.out.println("Execution time: " + (System.nanoTime() - l));
     }
 
     /* TODO: use the above of method here
      */
     public void run() {
-        Executable executable = () -> System.out.println(System.currentTimeMillis());
+        Executable executable = () -> {
+            int i = 1000;
+            while (i-- >= 0) ;
+        };
         executionTime(executable);
-    }
-
-    @FunctionalInterface
-    interface Executable {
-        void execute();
     }
 }

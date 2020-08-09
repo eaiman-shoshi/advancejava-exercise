@@ -8,6 +8,10 @@ public class DidThatWork {
         User user = new User("Bazlur", "Rahman");
         // logger.info("user status:  {}", getUserStatus(user));
         logger.info("user status:  {}", () -> new String[]{getUserStatus(user)});
+        logger.error("user status:  {}", () -> new String[]{getUserStatus(user)});
+        logger.trace("user status:  {}", () -> new String[]{getUserStatus(user)});
+        logger.debug("user status:  {}", () -> new String[]{getUserStatus(user)});
+        logger.warn("user status:  {}", () -> new String[]{getUserStatus(user)});
     }
 
     private static String getUserStatus(final User user) {
