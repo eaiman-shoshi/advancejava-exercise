@@ -25,6 +25,16 @@ public interface Deck {
 
     String deckToString();
 
+    /**
+     * actually I don't know how card games works. so, just implemented a default method which will validate if
+     * there is 52 cards in the deck or not.
+     *
+     * @return boolean
+     */
+    default boolean isDeckValid() {
+        return size() == 52;
+    }
+
     Map<Integer, Deck> deal(int players, int numberOfCards)
             throws IllegalArgumentException;
 }
