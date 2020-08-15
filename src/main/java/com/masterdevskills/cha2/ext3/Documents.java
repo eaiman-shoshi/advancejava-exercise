@@ -1,7 +1,7 @@
 package com.masterdevskills.cha2.ext3;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -21,8 +21,9 @@ public class Documents {
 	 * @see Document#getTitle()
 	 */
 	public static List<String> titlesOf(Document... documents) {
-
-		throw new RuntimeException("TODO//ImplementIt");
+		return Stream.of(documents)
+				.map(Document::getTitle)
+				.collect(toList());
 	}
 
 	/**
@@ -37,8 +38,9 @@ public class Documents {
 	 * @see Documents#characterCount(Document.Page)
 	 */
 	public static List<Integer> pageCharacterCounts(Document document) {
-
-		throw new RuntimeException("TODO//ImplementIt");
+		return document.getPages().stream()
+				.map(Documents::characterCount)
+				.collect(toList());
 	}
 
 	public static Integer characterCount(Document.Page page) {
@@ -65,8 +67,8 @@ public class Documents {
 		output.append(pagePrinter.printTitlePage(document));
 
 		document.getPages().stream()
-						.map(page -> pagePrinter.printPage(page))
-						.forEach(str -> output.append(str));
+				.map(pagePrinter::printPage)
+				.forEach(output::append);
 
 		return output.toString();
 	}
